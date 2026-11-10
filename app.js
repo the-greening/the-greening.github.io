@@ -13,16 +13,4 @@ window.addEventListener('load',()=>{if(reloaded||!location.hash){if(reloaded&&lo
 
 
 
-const carousel=document.querySelector('.results-carousel'),track=carousel.querySelector('.results-track'),cards=[...track.children],pause=document.querySelector('#result-pause');
-let current=0,paused=false,visible=false,touching=false;
-const reduced=matchMedia('(prefers-reduced-motion:reduce)');
-function showResult(index){current=(index+cards.length)%cards.length;track.scrollTo({left:cards[current].offsetLeft-cards[0].offsetLeft,behavior:reduced.matches?'instant':'smooth'});updateCount()}
-function updateCount(){document.querySelector('#result-count').textContent=String(current+1).padStart(2,'0')+' / '+cards.length}
-document.querySelector('#result-prev').addEventListener('click',()=>showResult(current-1));
-document.querySelector('#result-next').addEventListener('click',()=>showResult(current+1));
-pause.addEventListener('click',()=>{paused=!paused;pause.setAttribute('aria-pressed',String(paused));pause.setAttribute('aria-label',paused?'자동 넘김 재생':'자동 넘김 일시정지');pause.textContent=paused?'자동 재생 ▶':'일시정지 Ⅱ'});
-let scrollEnd;track.addEventListener('scroll',()=>{clearTimeout(scrollEnd);scrollEnd=setTimeout(()=>{current=cards.reduce((best,card,i)=>Math.abs(card.offsetLeft-cards[0].offsetLeft-track.scrollLeft)<Math.abs(cards[best].offsetLeft-cards[0].offsetLeft-track.scrollLeft)?i:best,0);updateCount()},150)},{passive:true});
-track.addEventListener('pointerdown',()=>touching=true);window.addEventListener('pointerup',()=>touching=false);window.addEventListener('pointercancel',()=>touching=false);
-new IntersectionObserver(entries=>{visible=entries[0].isIntersecting},{threshold:.25}).observe(track);
-setInterval(()=>{if(visible&&!paused&&!touching&&!document.hidden&&!dialog.open&&!carousel.matches(':hover')&&!carousel.contains(document.activeElement))showResult(current+1)},5000);
-window.addEventListener('resize',()=>track.scrollTo({left:cards[current].offsetLeft-cards[0].offsetLeft,behavior:'instant'}));
+document.querySelectorAll('.work-filters button').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('.work-filters button').forEach(b=>{const active=b===button;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});document.querySelectorAll('.work-tile').forEach(tile=>{tile.hidden=button.dataset.filter!=='all'&&tile.dataset.kind!==button.dataset.filter})}));
