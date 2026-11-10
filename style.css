@@ -92,3 +92,6 @@ footer.wrap{background:#111;color:#fff;width:100%;padding-left:max(56px,calc((10
 .hero:before,.price:before,.closing:before{background-image:url('assets/palm-shadow.svg');background-size:auto 150%;background-position:right center;opacity:.35;mix-blend-mode:multiply}.price:before{opacity:.15}.closing:before{opacity:.3}.choice:before{inset:0 0 0 40%;background:url('assets/palm-shadow.svg') center/cover no-repeat;opacity:.32;filter:none;mix-blend-mode:multiply}
 .director{background:#fff;color:#111;position:relative;isolation:isolate;overflow:hidden}.director:before{content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;background:url('assets/palm-shadow.svg') right top/auto 120% no-repeat;opacity:.16}.director-copy>p:not(.eyebrow){color:#636363}.director-copy>p:last-child{color:#111;border-color:#dedede}.director figcaption{color:#636363}.price{background:#111;color:#fff}.space-section{background:#fff;color:#111}.space-grid .intro,.hygiene,.studio-media figcaption{color:#636363}.hygiene li{border-color:#dedede}
 @media(max-width:760px){.hero:before{background-size:auto 115%;opacity:.32}.choice:before{inset:0;opacity:.24}.director:before{opacity:.12}}
+
+/* Restore the original soft green studio background requested by the owner. */
+.space-section{background:#e9ece2;color:#111}.hygiene li{border-color:#cbd5c4}
