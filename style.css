@@ -95,3 +95,6 @@ footer.wrap{background:#111;color:#fff;width:100%;padding-left:max(56px,calc((10
 
 /* Restore the original soft green studio background requested by the owner. */
 .space-section{background:#e9ece2;color:#111}.hygiene li{border-color:#cbd5c4}
+
+/* Photos only: no gray frame, fixed-height letterboxing, or arrow footer. */
+.work-tile,.work-tile .work-media{background:transparent;box-shadow:none;border:0}.work-tile{align-self:start}.work-tile .work-media{height:auto;overflow:hidden}.work-tile .work-media img{height:auto;width:100%;object-fit:initial;display:block}.work-arrow{display:none}
