@@ -26,7 +26,7 @@ footer{padding-top:35px;padding-bottom:120px}.footer-top{display:block}.social{f
 @media(max-width:430px){.case-grid{gap:18px}.case .zoom{height:230px}.case h3{font-size:17px}.director-grid{grid-template-columns:1fr}.director figure{width:66%}.director figure img{height:310px}.director figcaption{display:flex}.director h2{font-size:29px}.director-copy>p:not(.eyebrow){font-size:14px}.more-gallery .zoom{height:215px}}
 @media(max-width:360px){.hero h1{font-size:30px}.hero-media img{height:165px}.case .zoom{height:205px}.case h3{font-size:16px}.case-title>span{font-size:7px}.amount{font-size:28px}.studio-media video,.studio-media img{height:230px}.sticky-contact a{font-size:12px}}
 /* OS preference is authoritative. Old in-site motion overrides are no longer used. */
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.reveal{opacity:1!important;transform:none!important;clip-path:none!important}}
+
 
 /* Two independent source windows preserve each brow and eye; full original opens on tap. */
 .case-pair{display:block;width:100%;height:100%;overflow:hidden}.case-pair img{height:50%;width:100%;object-fit:cover;transform:none!important}.case-pair .source-upper{object-position:50% 10%}.case-pair .source-lower{object-position:50% 84%}.case:nth-child(2) .source-upper{object-position:50% 14%}.case:nth-child(2) .source-lower{object-position:50% 88%}
@@ -73,3 +73,6 @@ section[id]{scroll-margin-top:0}.case-pair{position:relative}.case-pair:before,.
 /* Reference gallery: four columns on PC, two on mobile; photo first, no card frame. */
 .work-filters{display:flex;gap:12px;margin:0 0 30px}.work-filters button{border:1px solid var(--line);padding:10px 20px;font-size:12px;min-height:40px}.work-filters button.active{background:var(--green);color:var(--paper);border-color:var(--green)}.work-gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px 18px}.work-tile{display:block;min-width:0;width:100%;border:0;padding:0;text-align:right;background:none}.work-tile[hidden]{display:none}.work-media{display:block;height:330px;overflow:hidden;background:#e8e9e0}.work-media img{width:100%;height:100%;object-fit:contain;transition:transform .45s}.work-tile:hover .work-media img{transform:scale(1.025)}.work-arrow{display:block;font-size:25px;line-height:1;padding-top:12px}.work-note{margin-top:28px}
 @media(max-width:1000px) and (min-width:761px){.work-gallery{grid-template-columns:repeat(3,minmax(0,1fr))}.work-media{height:300px}}@media(max-width:760px){.work-filters{gap:8px;margin-bottom:24px}.work-filters button{font-size:11px;padding:10px 15px}.work-gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:15px 10px}.work-media{height:245px}.work-arrow{font-size:22px;padding-top:10px}.work-note{margin-top:24px}}
+
+/* Scroll entrances run directly, with sequential photo timing. */
+.reveal.in-view,.from-left.in-view,.from-right.in-view,.image-reveal.in-view{animation:none}.work-gallery{margin-top:5px}
