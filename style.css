@@ -67,3 +67,5 @@ section[id]{scroll-margin-top:0}.case-pair{position:relative}.case-pair:before,.
 @media(max-width:760px){.results-track{gap:16px;padding-bottom:16px}.result-card{flex-basis:86%;padding:10px}.result-caption{font-size:12px;padding-top:13px}.results-controls{gap:15px}.results-controls #result-pause{font-size:11px}}
 
 .results-track:after{content:"";flex:0 0 calc(66.666% - 8px)}@media(max-width:760px){.results-track:after{flex-basis:calc(14% - 16px)}}
+
+.method-card .brow-art{width:100%;max-width:250px;height:120px;margin:0 0 24px;display:flex;align-items:center}.brow-art svg{display:block;width:100%;height:100%;overflow:visible}.method-card.in-view .brow-art{animation:browReveal .95s both}@keyframes browReveal{from{opacity:.2;clip-path:inset(0 100% 0 0)}to{opacity:1;clip-path:inset(0)}}@media(max-width:760px){.method-card{grid-template-columns:1fr 130px;column-gap:15px}.method-card .brow-art{grid-column:2;grid-row:1/4;width:130px;height:80px;margin:0;align-self:center}}
