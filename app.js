@@ -4,10 +4,6 @@ toggle.addEventListener('click',()=>{const open=menu.classList.toggle('open');to
 const dialog=document.querySelector('#lightbox'),large=document.querySelector('#lightbox-image');let previousFocus;
 function bindZoom(root=document){root.querySelectorAll('.zoom').forEach(b=>b.addEventListener('click',()=>{previousFocus=b;large.src=b.dataset.image;large.alt=b.querySelector('img').alt;document.querySelector('#lightbox-title').textContent=b.getAttribute('aria-label').replace(' 확대','');dialog.showModal()}))}
 bindZoom();document.querySelector('#close-dialog').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close()}});dialog.addEventListener('close',()=>previousFocus?.focus({preventScroll:true}));
-const gallery=document.querySelector('#more-gallery');
-const extra=[['case-hair-4','눈썹 사례 · 눈매와 결 표현'],['case-hair-3','눈썹 사례 · 라인 비교'],['case-embo-2','눈썹 사례 · 두께와 라인 비교'],['case-hair-2','헤어스트로크 · 결의 방향 비교'],['case-hair-1','헤어스트로크 · 빈 부위 결 표현'],['case-shading-1','눈썹 사례 · 잔흔과 형태 비교'],['case-shading-2','셰딩 · 음영과 형태 비교']];
-extra.forEach(([file,title])=>{const item=document.createElement('article');item.innerHTML='<button class="zoom" data-image="assets/'+file+'.webp" aria-label="'+title+' 확대"><img src="assets/'+file+'.webp" alt="'+title+'" loading="lazy" width="900" height="1200"><span class="zoom-mark">전체 보기 ↗</span></button><p>'+title+'</p>';gallery.append(item)});bindZoom(gallery);
-document.querySelector('#more').addEventListener('click',e=>{const b=e.currentTarget,open=gallery.hidden;gallery.hidden=!open;b.setAttribute('aria-expanded',String(open));b.innerHTML=open?'사례 접기 <span>−</span>':'실제 사례 더 보기 <span>＋</span>';if(!open)document.querySelector('#work').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'instant':'smooth'})});
 if('IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>{for(const e of entries){if(e.isIntersecting)e.target.classList.add('in-view');else e.target.classList.remove('in-view')}},{threshold:.12,rootMargin:'0px 0px -12px 0px'});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el))}
 const v=document.querySelector('#studio-video');function startVideo(){v.muted=true;v.play().catch(()=>{})}startVideo();document.addEventListener('visibilitychange',()=>{if(!document.hidden)startVideo()});function videoFallback(){if(v.nextElementSibling?.classList.contains('video-fallback'))return;const img=document.createElement('img');img.src=v.poster;img.alt='더그리닝 실제 매장 공간';img.className='video-fallback';v.hidden=true;v.after(img)}v.addEventListener('error',videoFallback);v.querySelector('source')?.addEventListener('error',videoFallback,{once:true});
 history.scrollRestoration='manual';
@@ -16,3 +12,17 @@ window.addEventListener('load',()=>{if(reloaded||!location.hash){if(reloaded&&lo
 
 
 
+
+const carousel=document.querySelector('.results-carousel'),track=carousel.querySelector('.results-track'),cards=[...track.children],pause=document.querySelector('#result-pause');
+let current=0,paused=false,visible=false,touching=false;
+const reduced=matchMedia('(prefers-reduced-motion:reduce)');
+function showResult(index){current=(index+cards.length)%cards.length;track.scrollTo({left:cards[current].offsetLeft-cards[0].offsetLeft,behavior:reduced.matches?'instant':'smooth'});updateCount()}
+function updateCount(){document.querySelector('#result-count').textContent=String(current+1).padStart(2,'0')+' / '+cards.length}
+document.querySelector('#result-prev').addEventListener('click',()=>showResult(current-1));
+document.querySelector('#result-next').addEventListener('click',()=>showResult(current+1));
+pause.addEventListener('click',()=>{paused=!paused;pause.setAttribute('aria-pressed',String(paused));pause.setAttribute('aria-label',paused?'자동 넘김 재생':'자동 넘김 일시정지');pause.textContent=paused?'자동 재생 ▶':'일시정지 Ⅱ'});
+let scrollEnd;track.addEventListener('scroll',()=>{clearTimeout(scrollEnd);scrollEnd=setTimeout(()=>{current=cards.reduce((best,card,i)=>Math.abs(card.offsetLeft-cards[0].offsetLeft-track.scrollLeft)<Math.abs(cards[best].offsetLeft-cards[0].offsetLeft-track.scrollLeft)?i:best,0);updateCount()},150)},{passive:true});
+track.addEventListener('pointerdown',()=>touching=true);window.addEventListener('pointerup',()=>touching=false);window.addEventListener('pointercancel',()=>touching=false);
+new IntersectionObserver(entries=>{visible=entries[0].isIntersecting},{threshold:.25}).observe(track);
+setInterval(()=>{if(visible&&!paused&&!touching&&!document.hidden&&!dialog.open&&!carousel.matches(':hover')&&!carousel.contains(document.activeElement))showResult(current+1)},5000);
+window.addEventListener('resize',()=>track.scrollTo({left:cards[current].offsetLeft-cards[0].offsetLeft,behavior:'instant'}));
