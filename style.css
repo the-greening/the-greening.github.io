@@ -98,3 +98,6 @@ footer.wrap{background:#111;color:#fff;width:100%;padding-left:max(56px,calc((10
 
 /* Photos only: no gray frame, fixed-height letterboxing, or arrow footer. */
 .work-tile,.work-tile .work-media{background:transparent;box-shadow:none;border:0}.work-tile{align-self:start}.work-tile .work-media{height:auto;overflow:hidden}.work-tile .work-media img{height:auto;width:100%;object-fit:initial;display:block}.work-arrow{display:none}
+
+/* Keep the director portrait centered and the palm shadow visible on phones. */
+@media(max-width:760px){.director-grid{grid-template-columns:1fr;gap:32px}.director figure{width:min(78%,340px);margin-inline:auto}.director figure img{height:auto;width:100%;aspect-ratio:3/4;object-fit:cover}.director:before{background-size:620px 800px;background-position:50% 260px;opacity:.42}.choice:before{background-size:600px 800px;background-position:55% center;opacity:.34}}
