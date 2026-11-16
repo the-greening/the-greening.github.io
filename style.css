@@ -109,3 +109,6 @@ footer.wrap{background:#111;color:#fff;width:100%;padding-left:max(56px,calc((10
 
 /* Keep the face clearer; blend only the outer edges into white. */
 .worry-film{opacity:.72;-webkit-mask-image:radial-gradient(ellipse closest-side,#000 62%,transparent 100%);mask-image:radial-gradient(ellipse closest-side,#000 62%,transparent 100%)}@media(max-width:760px){.worry-film{opacity:.75}}
+
+/* Clearer, slightly larger face with transparent concern captions. */
+.worry-film{width:min(880px,88%);top:150px;opacity:.94;-webkit-mask-image:radial-gradient(ellipse closest-side,#000 78%,transparent 100%);mask-image:radial-gradient(ellipse closest-side,#000 78%,transparent 100%)}.worry-bubble{background:transparent;box-shadow:none;text-shadow:0 1px 8px #fff,0 0 18px #fff}.worry-bubble strong{color:#00351c}@media(max-width:760px){.worry-film{width:420px;max-width:120%;top:185px;opacity:.94}}
