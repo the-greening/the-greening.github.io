@@ -106,3 +106,6 @@ footer.wrap{background:#111;color:#fff;width:100%;padding-left:max(56px,calc((10
 @media(max-width:760px){.worry-section{padding:52px 20px 35px}.worry-content h2{font-size:27px}.worry-film{width:360px;max-width:110%;top:205px;opacity:.4}.worry-messages{max-width:330px;margin-top:27px;gap:13px}.worry-bubble{font-size:13px;padding:14px 18px;max-width:90%}.worry-end{font-size:13px;margin-top:26px}.worry-caption{font-size:8px}}
 
 .sticky-contact{grid-template-columns:1fr 1fr;gap:7px}.sticky-contact a{gap:9px;font-weight:600}.sticky-naver{background:#03c75a;color:#fff}.sticky-kakao{background:#fee500;color:#191919}.naver-icon{font-family:Arial,sans-serif;font-size:23px;font-weight:900;line-height:1}.sticky-kakao svg{width:23px;height:23px;flex-shrink:0}.button[href*="pf.kakao.com"]{background:#fee500;color:#191919;border-color:#fee500}
+
+/* Keep the face clearer; blend only the outer edges into white. */
+.worry-film{opacity:.72;-webkit-mask-image:radial-gradient(ellipse closest-side,#000 62%,transparent 100%);mask-image:radial-gradient(ellipse closest-side,#000 62%,transparent 100%)}@media(max-width:760px){.worry-film{opacity:.75}}
